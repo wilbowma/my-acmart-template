@@ -13,7 +13,7 @@ main : $(OUTPUT) $(OUTPUT)/abstract.txt $(OUTPUT)/main.pdf
 $(OUTPUT) :
 	mkdir -p $@
 
-appendix : $(OUTPUT)/appendix.pdf
+appendix : $(OUTPUT)/supplementary-appendix.pdf
 
 materials : $(OUTPUT)/materials.tar.gz
 
@@ -27,10 +27,12 @@ $(OUTPUT)/abstract.txt :: abstract.tex
 ifeq (,$(wildcard ~/iCloud/wilbowma.bib))
 else
 wilbowma.bib : ~/iCloud/wilbowma.bib
+	chmod +w $@
 	cp $< $@
+	chmod -w $@
 endif
 
-$(OUTPUT)/%.pdf :: %.tex *.tex *.bib Makefile
+$(OUTPUT)/%.pdf : %.tex *.bib wilbowma.bib Makefile
 	latexrun -O=$(OUTPUT) -o $@ $<
 
 clean :

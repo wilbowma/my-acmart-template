@@ -1,11 +1,11 @@
-\documentclass[acmsmall]{acmart}
+\documentclass[dvipsnames,acmsmall]{acmart}
 
 \input{setup}
+\input{copyright}
 
 \begin{document}
 \input{titles}
 \input{authors}
-\input{copyright}
 
 \begin{abstract}
   \input{abstract}
@@ -23,5 +23,8 @@
   \input{data-availability}
   \input{bib}
   \clearpage
+  \appendix
   \input{appendix}
 }
+
+\end{document}
